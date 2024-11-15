@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
         id="cordova-plugin-ffmpeg"
-        version="2.0.1">
+        version="2.0.3">
 
   <name>FFMpeg</name>
 
@@ -9,9 +9,8 @@
     <engine name="cordova" version=">=3.4.0"/>
   </engines>
 
-  <asset src="www/ffmpeg.js" target="js/ffmpeg.js"/>
 
-  <js-module src="www/ffmpeg.js" name="ffmpeg">
+  <js-module name="ffmpeg" src="www/ffmpeg.js">
     <clobbers target="ffmpeg" />
   </js-module>
 
