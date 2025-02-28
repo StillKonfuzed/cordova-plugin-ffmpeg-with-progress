@@ -52,7 +52,7 @@ public class FFMpeg extends CordovaPlugin {
                 String firstParam = data.getString(0);
                 if ("string".equalsIgnoreCase(firstParam)) {
                     String formattedOutput = String.format(
-                        "Frames : %d, Time: %d sec, New Size: %.2f MB, Speed: %.2fx"
+                        "Frames : %d, Time: %d sec, New Size: %.2f MB, Speed: %.2fx",
                         latestStatistics.getVideoFrameNumber(),
                         latestStatistics.getTime() / 1000,
                         latestStatistics.getSize() / 1024 / 1024,
