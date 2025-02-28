@@ -1,9 +1,33 @@
-# Cordova FFMPEG Kit Plugin 
+# Cordova FFMPEG Plugin
 
-Simple plugin that binds ffmpeg-kit to execute ffmpeg commands
+A feature add-on to get progress of running ffmpeg command.
 
-### Resources
+Install the plugin
+    
+    $ cordova plugin add cordova-plugin-ffmpeg-with-progress
 
-* [Plugin](plugin)
-* [Demo app](example) - Useful if you want to try out the plugin or want to reproduce a bug or build errors.
 
+```js
+ffmpeg.exec("-i file:///emulated/0/Downloads/meinput.mp4 -vn -c:a copy file:///emulated/0/Downloads/out.mp3", (success) => alert(success), (failure) => alert(failure));
+
+//then ...
+
+setInterval(()=>{
+      ffmpeg.progress((progressDetails) => {
+        console.log(progressDetails); 
+        // {
+        //     "frames": <number>,
+        //     "fps": <number>,
+        //     "size": <number>,
+        //     "bitrate": <number>,
+        //     "speed": <number>,
+        //     "duration": <number>
+        // }
+      },(error) => {
+        console.log(error); // cannot get progress
+      }); 
+},2000);
+
+```
+
+Detailed instructions on main repo : [MaximBelov](https://github.com/MaximBelov/cordova-plugin-ffmpeg)

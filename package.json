@@ -1,11 +1,33 @@
 {
-  "private": true,
-  "workspaces": {
-    "packages": [
-      "plugin"
+  "name": "cordova-plugin-ffmpeg",
+  "version": "2.0.8",
+  "description": "Cordova FFMPEG plugin with ffmpeg kit & progress",
+  "scripts": {
+    "postinstall": "node copy-cache.js"
+  },
+  "cordova": {
+    "id": "cordova-plugin-ffmpeg",
+    "platforms": [
+      "android",
+      "ios"
     ]
   },
-  "scripts": {
-    "publish": "cd plugin; npm publish"
-  }
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StillKonfuzed/cordova-plugin-ffmpeg.git"
+  },
+  "keywords": [
+    "cordova",
+    "plugin",
+    "ffmpeg",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios"
+  ],
+  "author": "Marin Bivol",
+  "license": "Apache-2",
+  "bugs": {
+    "url": "https://github.com/StillKonfuzed/cordova-plugin-ffmpeg/issues"
+  },
+  "homepage": "https://github.com/StillKonfuzed/cordova-plugin-ffmpeg#readme"
 }

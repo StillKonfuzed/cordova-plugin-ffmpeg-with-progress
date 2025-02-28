@@ -1,7 +1,0 @@
-{
-  "name": "cordova-plugin-ffmpeg-example",
-  "integrations": {
-    "cordova": {}
-  },
-  "type": "angular"
-}
