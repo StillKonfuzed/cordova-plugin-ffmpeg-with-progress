@@ -2,6 +2,8 @@
 
 A feature add-on to get progress of running ffmpeg command.
 
+Progress is not supported for IOS.
+
 Install the plugin
     
     $ cordova plugin add cordova-plugin-ffmpeg-with-progress
