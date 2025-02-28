@@ -1,4 +1,4 @@
-package com.marin.plugin;
+package com.stillkonfuzed.plugin;
 
 import android.util.Log;
 import org.apache.cordova.*;
@@ -39,6 +39,7 @@ public class FFMpeg extends CordovaPlugin {
         } 
         //added progress stats frames,fps,speed,duration -- stillkonfuzed
         else if (action.equals("progress")) { 
+            
             if (currentSession == null) {
                 callbackContext.error("No active FFmpeg session found!");
                 return true;
@@ -47,16 +48,28 @@ public class FFMpeg extends CordovaPlugin {
               callbackContext.error("No progress available yet!");
               return true;
             }
-
             try {
-                JSONObject progressData = new JSONObject();
-                progressData.put("frames", latestStatistics.getVideoFrameNumber());
-                progressData.put("fps", latestStatistics.getVideoFps());
-                progressData.put("size", latestStatistics.getSize());
-                progressData.put("bitrate", latestStatistics.getBitrate());
-                progressData.put("speed", latestStatistics.getSpeed());
-                progressData.put("duration", latestStatistics.getTime());
-                callbackContext.success(progressData);
+                String firstParam = data.getString(0);
+                if ("string".equalsIgnoreCase(firstParam)) {
+                    String formattedOutput = String.format(
+                        "Frames : %d, Time: %d sec, New Size: %.2f MB, Speed: %.2fx"
+                        latestStatistics.getVideoFrameNumber(),
+                        latestStatistics.getTime() / 1000,
+                        latestStatistics.getSize() / 1024 / 1024,
+                        latestStatistics.getSpeed()
+                    );
+                    callbackContext.success(formattedOutput);
+                }else{ //return json
+                    JSONObject progressData = new JSONObject();
+                    progressData.put("frames", latestStatistics.getVideoFrameNumber());
+                    progressData.put("fps", latestStatistics.getVideoFps());
+                    progressData.put("size", latestStatistics.getSize());
+                    progressData.put("bitrate", latestStatistics.getBitrate());
+                    progressData.put("speed", latestStatistics.getSpeed());
+                    progressData.put("duration", latestStatistics.getTime());
+                    callbackContext.success(progressData);
+                }
+                
             } catch (JSONException e) {
                 callbackContext.error("Error in progress reporting");
             }
