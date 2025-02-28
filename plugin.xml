@@ -30,25 +30,4 @@
     <resource-file src="src/android/libs/smart-exception-java/0.1.1/smart-exception-java-0.1.1.jar" target="libs/smart-exception-java-0.1.1.jar" />
 
   </platform>
-
-  <platform name="ios">
-
-    <config-file target="config.xml" parent="/widget">
-      <feature name="FFMpeg">
-        <param name="ios-package" value="HWPFFMpeg" />
-      </feature>
-    </config-file>
-
-    <header-file src="src/ios/HWPFFMpeg.h" target-dir="FFMpegPlugin" />
-    <source-file src="src/ios/HWPFFMpeg.m" target-dir="FFMpegPlugin" />
-    <framework src="src/ios/ffmpeg-kit-ios-full-gpl/4.5.1-9eb5c/ffmpegkit.xcframework" custom="true" embed="true" link="true" />
-    <framework src="src/ios/ffmpeg-kit-ios-full-gpl/4.5.1-9eb5c/libavcodec.xcframework" custom="true" embed="true" link="true" />
-    <framework src="src/ios/ffmpeg-kit-ios-full-gpl/4.5.1-9eb5c/libavdevice.xcframework" custom="true" embed="true" link="true" />
-    <framework src="src/ios/ffmpeg-kit-ios-full-gpl/4.5.1-9eb5c/libavfilter.xcframework" custom="true" embed="true" link="true" />
-    <framework src="src/ios/ffmpeg-kit-ios-full-gpl/4.5.1-9eb5c/libavformat.xcframework" custom="true" embed="true" link="true" />
-    <framework src="src/ios/ffmpeg-kit-ios-full-gpl/4.5.1-9eb5c/libavutil.xcframework" custom="true" embed="true" link="true" />
-    <framework src="src/ios/ffmpeg-kit-ios-full-gpl/4.5.1-9eb5c/libswresample.xcframework" custom="true" embed="true" link="true" />
-    <framework src="src/ios/ffmpeg-kit-ios-full-gpl/4.5.1-9eb5c/libswscale.xcframework" custom="true" embed="true" link="true" />
-
-  </platform>
 </plugin>

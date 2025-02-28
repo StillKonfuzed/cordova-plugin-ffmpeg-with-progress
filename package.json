@@ -8,8 +8,7 @@
   "cordova": {
     "id": "cordova-plugin-ffmpeg",
     "platforms": [
-      "android",
-      "ios"
+      "android"
     ]
   },
   "repository": {
@@ -21,8 +20,7 @@
     "plugin",
     "ffmpeg",
     "ecosystem:cordova",
-    "cordova-android",
-    "cordova-ios"
+    "cordova-android"
   ],
   "author": "Marin Bivol",
   "license": "Apache-2",
