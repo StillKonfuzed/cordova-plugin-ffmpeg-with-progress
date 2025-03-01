@@ -4,9 +4,13 @@ A feature add-on to get progress of running ffmpeg command.
 
 Progress is not supported for IOS.
 
-Install the plugin
+Install the plugin (ios/android)
     
-    $ cordova plugin add cordova-plugin-ffmpeg-with-progress
+    $ cordova plugin add https://github.com/StillKonfuzed/cordova-plugin-ffmpeg-with-progress.git
+
+Install the plugin (android Only branch) - (plugin size under 50MB out of 201MB)
+
+    $ cordova plugin add https://github.com/StillKonfuzed/cordova-plugin-ffmpeg-with-progress.git#android-only
 
 
 ```js
@@ -15,8 +19,11 @@ ffmpeg.exec("-i file:///emulated/0/Downloads/meinput.mp4 -vn -c:a copy file:///e
 //then ...
 
 setInterval(()=>{
-      ffmpeg.progress((progressDetails) => {
+      //pass "string" or "json" as response type
+      ffmpeg.progress("json", (progressDetails) => {
         console.log(progressDetails); 
+        //if "json" =>
+
         // {
         //     "frames": <number>,
         //     "fps": <number>,
@@ -25,6 +32,8 @@ setInterval(()=>{
         //     "speed": <number>,
         //     "duration": <number>
         // }
+
+        //if "string" => "Frames : 1234, Time: 100 sec, New Size: 700 MB, Speed: 1.5 x"
       },(error) => {
         console.log(error); // cannot get progress
       }); 
