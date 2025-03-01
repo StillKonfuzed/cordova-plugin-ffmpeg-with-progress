@@ -2,8 +2,6 @@
 
 A feature add-on to get progress of running ffmpeg command.
 
-### Progress is NOT supported for IOS.
-
 
 ### Install the plugin (ios/android) :
     
