@@ -7,3 +7,4 @@
 
 - (void) exec:(CDVInvokedUrlCommand*)command;
 - (void) probe:(CDVInvokedUrlCommand*)command;
+- (void) progress:(CDVInvokedUrlCommand*)command;

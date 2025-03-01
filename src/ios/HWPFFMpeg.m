@@ -84,4 +84,53 @@ NSMutableDictionary *mappings;
         [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
     }
 }
+
+- (void)progress:(CDVInvokedUrlCommand*)command {
+    if (currentSession == nil) {
+        CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"No active FFmpeg session found!"];
+        [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
+        return;
+    }
+
+    if (latestStatistics == nil) {
+        CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"No progress available yet!"];
+        [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
+        return;
+    }
+
+    @try {
+        NSString* firstParam = [[command arguments] objectAtIndex:0];
+
+        if ([firstParam caseInsensitiveCompare:@"string"] == NSOrderedSame) {
+            NSString* formattedOutput = [NSString stringWithFormat:
+                @"Frames : %d, Time: %d sec, New Size: %d MB, Speed: %.2f x",
+                [latestStatistics getVideoFrameNumber],
+                [latestStatistics getTime] / 1000,
+                [latestStatistics getSize] / 1024 / 1024,
+                [latestStatistics getSpeed]
+            ];
+
+            CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:formattedOutput];
+            [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
+
+        } else { // Return JSON
+            NSDictionary* progressData = @{
+                @"frames": @([latestStatistics getVideoFrameNumber]),
+                @"fps": @([latestStatistics getVideoFps]),
+                @"size": @([latestStatistics getSize]),
+                @"bitrate": @([latestStatistics getBitrate]),
+                @"speed": @([latestStatistics getSpeed]),
+                @"duration": @([latestStatistics getTime])
+            };
+
+            CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:progressData];
+            [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
+        }
+
+    } @catch (NSException *exception) {
+        CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Error in progress reporting"];
+        [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
+    }
+}
+
 @end
