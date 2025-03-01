@@ -7,7 +7,7 @@ module.exports = {
   probe: function (filePath, statusCallback, errorCallback) {
     cordova.exec(statusCallback, errorCallback, "FFMpeg", "probe", [filePath]);
   },
-  progress: function (filePath,statusCallback, errorCallback) {
-    cordova.exec(statusCallback, errorCallback, "FFMpeg", "progress", [filePath]);
+  progress: function (responseType,statusCallback, errorCallback) {
+    cordova.exec(statusCallback, errorCallback, "FFMpeg", "progress", [responseType]);
   },
 };
