@@ -2,17 +2,18 @@
 
 A feature add-on to get progress of running ffmpeg command.
 
-Progress is not supported for IOS.
 
-Install the plugin (ios/android)
+### Install the plugin (ios/android) :
     
     $ cordova plugin add https://github.com/StillKonfuzed/cordova-plugin-ffmpeg-with-progress.git
 
-Install the plugin (android Only branch) - (plugin size under 50MB out of 201MB)
+### Install the plugin (android Only branch) - (plugin size under 50MB out of 201MB) :
 
     $ cordova plugin add https://github.com/StillKonfuzed/cordova-plugin-ffmpeg-with-progress.git#android-only
 
 
+
+### Usage : 
 ```js
 ffmpeg.exec("-i file:///emulated/0/Downloads/meinput.mp4 -vn -c:a copy file:///emulated/0/Downloads/out.mp3", (success) => alert(success), (failure) => alert(failure));
 
